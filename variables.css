@@ -1,0 +1,10 @@
+:root {
+    /*Colours*/
+    --text-colour: #ffffff;
+    --light-grey: #4d4949;
+    --background-colour: #282626e7;
+    --pink: #df9292;
+
+    /*Fonts*/
+    --font-family: "Afacad", sans-serif;
+}

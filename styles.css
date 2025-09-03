@@ -1,0 +1,136 @@
+@import "variables.css";
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: var(--text-colour);
+    font-family: var(--font-family);
+}
+
+#container {
+    background-color: var(--background-colour);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+}
+
+#nav {
+    -webkit-app-region: drag;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 10px;
+    padding: 0 16px;
+}
+
+.nav-icon {
+    height: 10px;
+    width: 10px;
+}
+
+#task-container {
+    flex: 1;    
+    padding: 0 16px;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-bottom: 1px solid var(--light-grey);
+    gap: 15px;
+}
+
+.check-icon {
+    height: 28px;
+    width: 28px;
+}
+
+.task-title {
+    text-align: left;
+    flex: 1;
+    font-size: 16px;
+}
+
+[completed="false"] {
+    .check-icon {
+        filter: contrast(0) brightness(0.6);
+    }
+}
+
+[completed="true"] {
+    
+    .check-icon {
+        filter: contrast(1) brightness(1);
+    }
+
+    .task-title {
+        text-decoration: line-through;
+        color: var(--light-grey);
+    }
+}
+
+.delete-icon {
+    height: 10px;
+    width: 10px;
+}
+
+#task-input {
+    padding: 0 16px 20px 16px;
+    display: flex;
+    align-items: center;
+}
+
+#new-task-input {
+    flex: 1;
+    height: 35px;
+    border-radius: 20px 0 0 20px;
+    border: none;
+    padding: 0 12px;
+    background-color: var(--light-grey);
+    color: var(--text-colour);
+    font-family: var(--font-family);
+    font-size: 16px;
+}
+
+#new-task-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+#add-task-button {
+    height: 35px;
+    width: 35px;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    background-color: var(--light-grey);
+    display: flex;
+    align-items: center;
+}
+
+#add-task-icon {
+    height: 20px;
+    width: 20px;
+
+    transition: all 0.2s ease;
+}
+
+#add-task-icon:active {
+    filter: brightness(1.3);
+}
+
+#add-task-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+
+#add-task-icon,  .check-icon, .delete-icon{    
+    cursor: pointer;
+}

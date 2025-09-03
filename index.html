@@ -2,10 +2,40 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Electron To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>Welcome to Electron To-Do List</h1>
-    <p>Your app is running! Test test</p>
+    <div id="container">
+        <div id="nav">
+            <img src="images/minus.png" class="nav-icon"/>
+            <img src="images/close.png" class="nav-icon"/>
+        </div>
+        <div id="task-container">
+            <div class="task" completed="false">
+                <img src="images/flower.png" class="check-icon"/>
+                <p class="task-title"> Laundry</p>
+                <img src="images/close.png" class="delete-icon"/>
+            </div>
+            <div class="task" completed="false">
+                <img src="images/flower.png" class="check-icon"/>
+                <p class="task-title"> blah blah blah dfgdfg dfg dfgdfg dfg dfg dfg dfgfgfgdfgd wsgfgwgdf </p>
+                <img src="images/close.png" class="delete-icon"/>
+            </div>
+            <div class="task" completed="true">
+                <img src="images/flower.png" class="check-icon"/>
+                <p class="task-title"> beep boooop test test beep boop woowowowowo</p>
+                <img src="images/close.png" class="delete-icon"/>
+            </div>
+        </div>
+        <div id="task-input">
+            <input type="text" id="new-task-input" placeholder="New Task"/>
+            <button id="add-task-button">
+                <img src="images/add.png" id="add-task-icon"/>
+            </button>
+        </div>    
+    </div>
   </body>
 </html>
