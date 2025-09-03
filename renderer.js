@@ -13,6 +13,7 @@ if (!fs.existsSync(path)) {
 
 const jsonString = fs.readFileSync('tasks.json', 'utf-8');
 let data = JSON.parse(jsonString);
+data.sort((a, b) => a.completed - b.completed);
 data.forEach(task => {
     const id = task.id;
     const taskTitle = task.title;
@@ -81,6 +82,20 @@ function updateTaskInJSON(id, completed) {
     fs.writeFileSync('tasks.json', JSON.stringify(data, null, 2), 'utf-8');
 }
 
+function renderTasks() {
+    let data = JSON.parse(fs.readFileSync('tasks.json', 'utf-8'));
+    // Sort: incomplete first, then completed
+    data.sort((a, b) => a.completed - b.completed);
+    tasksContainer.innerHTML = ""; // Clear current tasks
+    if (data.length === 0) {
+        showWelcomeMessage();
+    } else {
+        data.forEach(task => {
+            createTask(task.id, task.title, task.completed);
+        });
+    }
+}
+
 // Create welcome message element
 const welcomeMessage = document.createElement("h3");
 welcomeMessage.innerText = "Add your first task ♡";
@@ -126,4 +141,5 @@ function completeTaskToggle(task, id) {
         task.setAttribute("completed", "true");
         updateTaskInJSON(id, true);
     }
+    renderTasks();
 }
