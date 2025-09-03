@@ -6,6 +6,17 @@
     <img src="readme-pics/app-screenshot.png" height=470px>
 </div>
 
+## ♡ table of contents
+
+- [what is this?](#-what-is-this)
+- [prerequisites](#-prerequisites)
+- [how to make this app yours!](#-how-to-make-this-app-yours)
+- [how to package your app (make an .exe)](#-how-to-package-your-app-make-an-exe)
+- [how does it work?](#-how-does-it-work)
+- [how to mess around and learn](#-how-to-mess-around-and-learn)
+- [troubleshooting](#-troubleshooting)
+- [credits](#-credits)
+- [find me elsewhere](#-find-me-elsewhere)
 
 ## ♡ what is this?
 
