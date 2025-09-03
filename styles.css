@@ -40,8 +40,20 @@ h3 {
 }
 
 #task-container {
-    flex: 1;    
+    flex: 1 1 auto;
     padding: 0 16px;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+#task-container::-webkit-scrollbar {
+    width: 8px;
+    background: var(--background-colour);
+}
+
+#task-container::-webkit-scrollbar-thumb {
+    background: var(--light-grey);
+    border-radius: 8px;
 }
 
 .task {
@@ -90,7 +102,7 @@ h3 {
 }
 
 #task-input {
-    padding: 0 16px 20px 16px;
+    padding: 10px 16px 20px 16px;
     display: flex;
     align-items: center;
 }
