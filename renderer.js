@@ -45,6 +45,7 @@ function createTask(id, taskTitle, isCompleted) {
         deleteIcon.addEventListener("click", function() {
             const taskDiv = event.target.parentElement;
             tasksContainer.removeChild(taskDiv);
+            removeTaskFromJSON(id);
             // Show welcome message if no tasks left
             if (tasksContainer.querySelectorAll('.task').length === 0) {
                 showWelcomeMessage();
@@ -61,6 +62,12 @@ function createTask(id, taskTitle, isCompleted) {
 function addTaskToJSON(id, title, completed) {
     let data = JSON.parse(jsonString);
     data.push({ id: id, title: title, completed: completed });
+    fs.writeFileSync('tasks.json', JSON.stringify(data, null, 2), 'utf-8');
+}
+
+function removeTaskFromJSON(id) {
+    let data = JSON.parse(fs.readFileSync('tasks.json', 'utf-8'));
+    data = data.filter(task => task.id !== id);
     fs.writeFileSync('tasks.json', JSON.stringify(data, null, 2), 'utf-8');
 }
 
