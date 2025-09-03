@@ -3,14 +3,32 @@ const tasksContainer = document.getElementById("task-container");
 const checkIconSource = "images/flower.png";
 const deleteIconSource = "images/close.png";
 
-// document.querySelectorAll(".check-icon").forEach(function(icon) {
-//     icon.addEventListener("click", function(event) {
-//         const taskDiv = event.target.parentElement;
-//         completeTaskToggle(taskDiv);
-//     });
-// });
+// Create welcome message element
+const welcomeMessage = document.createElement("h3");
+welcomeMessage.innerText = "Add your first task ♡";
+welcomeMessage.setAttribute("id", "intro-text");
+
+// Show welcome message if no tasks exist on load
+if (tasksContainer.querySelectorAll('.task').length === 0) {
+    tasksContainer.appendChild(welcomeMessage);
+}
+
+function showWelcomeMessage() {
+    if (!document.getElementById("intro-text")) {
+        tasksContainer.appendChild(welcomeMessage);
+    }
+}
+
+function removeWelcomeMessage() {
+    const introText = document.getElementById("intro-text");
+    if (introText && introText.parentNode) {
+        introText.parentNode.removeChild(introText);
+    }
+}
 
 function addTask () {
+    removeWelcomeMessage();
+
     if (inputEntry.value !== "") {        
         const taskTitle = inputEntry.value.trim();
 
@@ -36,6 +54,10 @@ function addTask () {
         deleteIcon.addEventListener("click", function() {
             const taskDiv = event.target.parentElement;
             tasksContainer.removeChild(taskDiv);
+            // Show welcome message if no tasks left
+            if (tasksContainer.querySelectorAll('.task').length === 0) {
+                showWelcomeMessage();
+            }
         });
 
         newTask.appendChild(checkIcon);

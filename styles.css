@@ -8,6 +8,12 @@ html, body {
     font-family: var(--font-family);
 }
 
+h3 {
+    color: var(--light-grey);
+    font-weight: 400;
+    text-align: center;
+}
+
 #container {
     background-color: var(--background-colour);
     display: flex;
