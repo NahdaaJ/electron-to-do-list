@@ -37,6 +37,7 @@ h3 {
 .nav-icon {
     height: 10px;
     width: 10px;
+    -webkit-app-region: no-drag;
 }
 
 #task-container {
@@ -151,6 +152,6 @@ h3 {
 }
 
 
-#add-task-icon,  .check-icon, .delete-icon{    
+#add-task-icon,  .check-icon, .delete-icon, .nav-icon {    
     cursor: pointer;
 }
