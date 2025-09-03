@@ -1,0 +1,25 @@
+{
+  "name": "electron-to-do-list",
+  "version": "1.0.0",
+  "description": "A to do list app for desktop created by electron! 🌸",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NahdaaJ/electron-to-do-list.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NahdaaJ/electron-to-do-list/issues"
+  },
+  "homepage": "https://github.com/NahdaaJ/electron-to-do-list#readme",
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-reload": "^2.0.0-alpha.1"
+  }
+}
