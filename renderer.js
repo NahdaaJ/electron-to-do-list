@@ -3,6 +3,13 @@ const tasksContainer = document.getElementById("task-container");
 const checkIconSource = "images/flower.png";
 const deleteIconSource = "images/close.png";
 
+// Allow Enter key to add task
+inputEntry.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        addTask();
+    }
+});
+
 // Create welcome message element
 const welcomeMessage = document.createElement("h3");
 welcomeMessage.innerText = "Add your first task ♡";

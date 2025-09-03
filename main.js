@@ -1,6 +1,6 @@
-require('electron-reload')(__dirname, {
-  electron: require(`${__dirname}/node_modules/electron`)
-});
+// require('electron-reload')(__dirname, {
+//   electron: require(`${__dirname}/node_modules/electron`)
+// });
 
 const { app, BrowserWindow } = require('electron');
 require('@electron/remote/main').initialize();
@@ -9,7 +9,7 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 280,
     height: 560,
-    alwaysOnTop: true,
+    type: "desktop",
     frame: false,
     transparent: true,
     webPreferences: {
