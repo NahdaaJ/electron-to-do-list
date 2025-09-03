@@ -10,7 +10,9 @@ welcomeMessage.setAttribute("id", "intro-text");
 
 // JSON Loading
 const fs = require('fs');
-const path = 'tasks.json';
+const path = (process.platform === 'win32')
+    ? require('path').join(process.env.APPDATA, 'electron-to-do-list', 'tasks.json')
+    : require('path').join(require('os').homedir(), '.config', 'electron-to-do-list', 'tasks.json');
 
 if (!fs.existsSync(path)) {
     fs.writeFileSync(path, '[]', 'utf-8'); // Create an empty array if file doesn't exist
