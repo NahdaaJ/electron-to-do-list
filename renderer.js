@@ -3,6 +3,11 @@ const tasksContainer = document.getElementById("task-container");
 const checkIconSource = "images/flower.png";
 const deleteIconSource = "images/close.png";
 
+// Create welcome message element
+const welcomeMessage = document.createElement("h3");
+welcomeMessage.innerText = "Add your first task ♡";
+welcomeMessage.setAttribute("id", "intro-text");
+
 // JSON Loading
 const fs = require('fs');
 const path = 'tasks.json';
@@ -11,16 +16,7 @@ if (!fs.existsSync(path)) {
     fs.writeFileSync(path, '[]', 'utf-8'); // Create an empty array if file doesn't exist
 }
 
-const jsonString = fs.readFileSync('tasks.json', 'utf-8');
-let data = JSON.parse(jsonString);
-data.sort((a, b) => a.completed - b.completed);
-data.forEach(task => {
-    const id = task.id;
-    const taskTitle = task.title;
-    const isCompleted = task.completed;
-
-    createTask(id, taskTitle, isCompleted);
-});
+renderTasks();
 
 function createTask(id, taskTitle, isCompleted) {
     const newTask = document.createElement("div");
@@ -61,30 +57,31 @@ function createTask(id, taskTitle, isCompleted) {
 }
 
 function addTaskToJSON(id, title, completed) {
-    let data = JSON.parse(jsonString);
+    let data = JSON.parse(fs.readFileSync(path, 'utf-8'));
     data.push({ id: id, title: title, completed: completed });
-    fs.writeFileSync('tasks.json', JSON.stringify(data, null, 2), 'utf-8');
+    fs.writeFileSync(path, JSON.stringify(data, null, 2), 'utf-8');
+
+    renderTasks();
 }
 
 function removeTaskFromJSON(id) {
-    let data = JSON.parse(fs.readFileSync('tasks.json', 'utf-8'));
+    let data = JSON.parse(fs.readFileSync(path, 'utf-8'));
     data = data.filter(task => task.id !== id);
-    fs.writeFileSync('tasks.json', JSON.stringify(data, null, 2), 'utf-8');
+    fs.writeFileSync(path, JSON.stringify(data, null, 2), 'utf-8');
 }
 
 function updateTaskInJSON(id, completed) {
-    let data = JSON.parse(fs.readFileSync('tasks.json', 'utf-8'));
+    let data = JSON.parse(fs.readFileSync(path, 'utf-8'));
     data.forEach(task => {
         if (task.id === id) {
             task.completed = completed;
         }
     });
-    fs.writeFileSync('tasks.json', JSON.stringify(data, null, 2), 'utf-8');
+    fs.writeFileSync(path, JSON.stringify(data, null, 2), 'utf-8');
 }
 
 function renderTasks() {
-    let data = JSON.parse(fs.readFileSync('tasks.json', 'utf-8'));
-    // Sort: incomplete first, then completed
+    let data = JSON.parse(fs.readFileSync(path, 'utf-8'));
     data.sort((a, b) => a.completed - b.completed);
     tasksContainer.innerHTML = ""; // Clear current tasks
     if (data.length === 0) {
@@ -96,15 +93,6 @@ function renderTasks() {
     }
 }
 
-// Create welcome message element
-const welcomeMessage = document.createElement("h3");
-welcomeMessage.innerText = "Add your first task ♡";
-welcomeMessage.setAttribute("id", "intro-text");
-
-// Show welcome message if no tasks exist on load
-if (tasksContainer.querySelectorAll('.task').length === 0) {
-    tasksContainer.appendChild(welcomeMessage);
-}
 
 function showWelcomeMessage() {
     if (!document.getElementById("intro-text")) {
