@@ -20,6 +20,15 @@ if (!fs.existsSync(path)) {
 
 renderTasks();
 
+const remote = require('@electron/remote');
+function closeWindow() {
+    remote.getCurrentWindow().close();
+}
+
+function minimiseWindow() {
+    remote.getCurrentWindow().minimize();
+}
+
 function createTask(id, taskTitle, isCompleted) {
     const newTask = document.createElement("div");
         newTask.className = "task";

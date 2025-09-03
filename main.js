@@ -3,6 +3,7 @@ require('electron-reload')(__dirname, {
 });
 
 const { app, BrowserWindow } = require('electron');
+require('@electron/remote/main').initialize();
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -16,6 +17,7 @@ function createWindow() {
       contextIsolation: false
     }
   });
+  require('@electron/remote/main').enable(win.webContents); // <-- move here
   win.loadFile('index.html');
 }
 
