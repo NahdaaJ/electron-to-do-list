@@ -32,7 +32,7 @@ function createTask(id, taskTitle, isCompleted) {
         checkIcon.setAttribute("id", id.toString());
         checkIcon.addEventListener("click", function(event) {
             const taskDiv = event.target.parentElement;
-            completeTaskToggle(taskDiv);
+            completeTaskToggle(taskDiv, id);
         });
 
         const taskText = document.createElement("p");
@@ -68,6 +68,16 @@ function addTaskToJSON(id, title, completed) {
 function removeTaskFromJSON(id) {
     let data = JSON.parse(fs.readFileSync('tasks.json', 'utf-8'));
     data = data.filter(task => task.id !== id);
+    fs.writeFileSync('tasks.json', JSON.stringify(data, null, 2), 'utf-8');
+}
+
+function updateTaskInJSON(id, completed) {
+    let data = JSON.parse(fs.readFileSync('tasks.json', 'utf-8'));
+    data.forEach(task => {
+        if (task.id === id) {
+            task.completed = completed;
+        }
+    });
     fs.writeFileSync('tasks.json', JSON.stringify(data, null, 2), 'utf-8');
 }
 
@@ -107,11 +117,13 @@ function addTask () {
     }
 }
 
-function completeTaskToggle(task) {
+function completeTaskToggle(task, id) {
     const isCompleted = task.getAttribute("completed") === "true";
     if (isCompleted) {
         task.setAttribute("completed", "false");
+        updateTaskInJSON(id, false);
     } else {
         task.setAttribute("completed", "true");
+        updateTaskInJSON(id, true);
     }
 }
