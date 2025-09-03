@@ -50,6 +50,8 @@ html, body {
 .check-icon {
     height: 28px;
     width: 28px;
+
+    transition: all 0.2s ease;
 }
 
 .task-title {

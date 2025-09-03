@@ -3,7 +3,6 @@ const tasksContainer = document.getElementById("task-container");
 const checkIconSource = "images/flower.png";
 const deleteIconSource = "images/close.png";
 
-
 // document.querySelectorAll(".check-icon").forEach(function(icon) {
 //     icon.addEventListener("click", function(event) {
 //         const taskDiv = event.target.parentElement;
@@ -34,6 +33,10 @@ function addTask () {
         const deleteIcon = document.createElement("img");
         deleteIcon.src = deleteIconSource;
         deleteIcon.className = "delete-icon";
+        deleteIcon.addEventListener("click", function() {
+            const taskDiv = event.target.parentElement;
+            tasksContainer.removeChild(taskDiv);
+        });
 
         newTask.appendChild(checkIcon);
         newTask.appendChild(taskText);
